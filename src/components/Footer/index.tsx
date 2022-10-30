@@ -9,7 +9,7 @@ const Footer: FC = () => {
       <a href="https://github.com/andriibeha" target="_blank" rel="noreferrer">
         <svg
           className="footer__icon"
-          fill="#000000"
+          fill="#FFFFFF"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 50 50"
           width="50px"

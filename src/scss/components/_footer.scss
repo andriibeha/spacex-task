@@ -2,20 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.footer__description {
-  font-size: 20px;
-  color: grey;
-}
+  &__description {
+    font-size: 20px;
+    color: grey;
+  }
 
-.footer__icon {
-  margin-left: 15px;
-  cursor: pointer;
-  transition-timing-function: ease-in-out;
+  &__icon {
+    margin-left: 15px;
+    cursor: pointer;
+    transition-timing-function: ease-in-out;
 
-  &:hover {
-    scale: 1.6;
-    transition-duration: 0.25s;
+    &:hover {
+      scale: 1.6;
+      transition-duration: 0.25s;
+    }
   }
 }

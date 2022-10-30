@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
+import launch from "./slices/launchSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: { launch },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
