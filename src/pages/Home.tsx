@@ -1,13 +1,14 @@
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectLaunchData,
   selectLaunchStatus,
 } from "../redux/selectors/selectLaunchData";
 import { fetchLaunch } from "../redux/slices/launchSlice";
+import { useAppDispatch } from "../redux/store";
 
 const Home: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const items = useSelector(selectLaunchData);
 
   useEffect(() => {
@@ -15,9 +16,7 @@ const Home: FC = () => {
     console.log(items);
   }, []);
 
-  return (
-    <main className="main"></main>
-  );
+  return <main className="main"></main>;
 };
 
 export default Home;

@@ -27,8 +27,19 @@ const initialState: LaunchSlickState = {
 export const fetchLaunch: any = createAsyncThunk(
   "launch/fetchLaunchStatus",
   async () => {
-    const { data } = await axios.get(`https://api.spacexdata.com/v4/launches`);
-    return data;
+    const result = await axios({
+      method: "post",
+      url: `https://api.spacexdata.com/v4/launches/query`,
+      headers: { "spacex-key": "spacex-key" },
+      data: {
+        query: {},
+        options: {
+          page: 1,
+          limit: 1,
+        },
+      },
+    });
+    return result;
   }
 );
 

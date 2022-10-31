@@ -19,9 +19,7 @@ const Header: FC = () => {
       </svg>
 
       <div className="hero">
-        <div className="hero__bg">
-          <p className="hero__description">LAUNCHES</p>
-        </div>
+        <div className="hero__bg"></div>
       </div>
     </header>
   );
