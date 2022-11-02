@@ -22,15 +22,19 @@ const initialState: LaunchSlickState = {
 export const fetchLaunch: any = createAsyncThunk(
   "launch/fetchLaunchStatus",
   async ({ sortProperty }: any) => {
-    const sort = { sortProperty };
+    console.log("SLICE", sortProperty);
+
+    const options = {
+      page: 1,
+      limit: 4,
+      sort: { sortProperty: "asc" },
+    };
+
     const { data } = await axios.post(
       "https://api.spacexdata.com/v4/launches/query",
       {
         query: {},
-        options: {
-          page: 1,
-          limit: 4,
-        },
+        options,
       }
     );
 

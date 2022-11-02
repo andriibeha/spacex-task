@@ -9,7 +9,8 @@ import s from "./Sort.module.scss";
 //FIX
 const sortList: SortType[] = [
   { name: "Flight number", sortProperty: SortEnum.FLIGHT_NUMBER },
-  { name: "Title", sortProperty: SortEnum.TITLE },
+  { name: "Name", sortProperty: SortEnum.NAME },
+  { name: "Launch success", sortProperty: SortEnum.LAUNCH_SUCCESS },
 ];
 
 const Sort: FC = () => {

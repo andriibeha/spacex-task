@@ -16,15 +16,10 @@ const LauncItem: FC<Props> = (props) => {
   return (
     <>
       <div className={s.wraper}>
-        <div className={s.video_responsive}>
-          <iframe
-            width="853"
-            height="480"
-            src={`https://www.youtube.com/embed/${links.youtube_id}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
+        <div className={s.img__responsive}>
+          <img
+            src={`https://img.youtube.com/vi/${links.youtube_id}/0.jpg`}
+            alt="img"
           />
         </div>
         <p className={s.time}>{time}</p>

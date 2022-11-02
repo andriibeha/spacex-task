@@ -13,7 +13,8 @@ export type LaunchType = {
 
 export enum SortEnum {
   FLIGHT_NUMBER = "flight_number",
-  TITLE = "title",
+  NAME = "name",
+  LAUNCH_SUCCESS = "launch_success",
 }
 
 export type SortType = { name: string; sortProperty: string };

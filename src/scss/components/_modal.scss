@@ -3,7 +3,7 @@
   width: 100vw;
 
   background-color: rgba(255, 255, 255, 0.4);
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 
@@ -19,6 +19,8 @@
 .modal.active {
   opacity: 1;
   pointer-events: all;
+
+  padding-bottom: 250px;
 }
 
 .modal__content {

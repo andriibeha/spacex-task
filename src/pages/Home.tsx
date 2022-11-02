@@ -23,7 +23,7 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
   const { items }: Launch = useSelector(selectLaunchData);
   const status = useSelector(selectLaunchStatus);
-  const sortProperty = useSelector(selectLaunchSort);
+  const { sortProperty } = useSelector(selectLaunchSort);
   const [modalActive, setModalActive] = useState(false);
   const [flightNumber, setFlightNumber] = useState(null);
 
