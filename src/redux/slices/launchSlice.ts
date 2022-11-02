@@ -1,39 +1,35 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-type LaunchStatus = "loading" | "success" | "error";
-
-export type LaunchType = {
-  flight_id: string;
-  flight_number: number;
-  mission_name: string;
-  launch_date_utc: string;
-  links: {
-    video_link: string;
-  };
-};
+import { LaunchType, LaunchStatus, SortEnum, SortType } from "./type";
 
 interface LaunchSlickState {
   items: LaunchType[];
   status: LaunchStatus;
+  sort: SortType;
 }
 
 const initialState: LaunchSlickState = {
   items: [],
   status: "loading",
+  sort: {
+    name: "Flight number",
+    sortProperty: SortEnum.FLIGHT_NUMBER,
+  },
 };
 
 //NEED TO FIX ANY
 export const fetchLaunch: any = createAsyncThunk(
   "launch/fetchLaunchStatus",
-  async () => {
+  async ({ sortProperty }: any) => {
+    const sort = { sortProperty };
     const { data } = await axios.post(
       "https://api.spacexdata.com/v4/launches/query",
       {
         query: {},
         options: {
           page: 1,
-          limit: 1,
+          limit: 4,
         },
       }
     );
@@ -47,7 +43,10 @@ export const launchSlice = createSlice({
   initialState,
   reducers: {
     setLaunch(state, action) {
-      state.items = action.payload;
+      state.items = [...state.items, ...action.payload];
+    },
+    setSort(state, action) {
+      state.sort = action.payload;
     },
   },
   extraReducers: {
@@ -66,6 +65,6 @@ export const launchSlice = createSlice({
   },
 });
 
-export const { setLaunch } = launchSlice.actions;
+export const { setSort } = launchSlice.actions;
 
 export default launchSlice.reducer;
