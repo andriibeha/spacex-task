@@ -1,9 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import launch from "./slices/launchSlice";
-//------------------------
+
 import {
-  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
@@ -35,45 +34,7 @@ export const store = configureStore({
       },
     }),
 });
-//---
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-
-/* mport { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import launch from "./slices/launchSlice";
-//------------------------
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { combineReducers } from "@reduxjs/toolkit";
-
-const persistConfig = {
-  key: "root",
-  version: 1,
-  storage,
-};
-
-//NEED FIX ANY
-const reducer: any = combineReducers({ launch });
-
-const persistedReducer = persistReducer(persistConfig, reducer);
-//-----------------------
-export const store = configureStore({
-  reducer: { launch: persistedReducer },
-});
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
- */
