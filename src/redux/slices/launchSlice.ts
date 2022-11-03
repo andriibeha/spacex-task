@@ -1,6 +1,7 @@
-import axios from "axios";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getLauches } from "../../services/api/launches";
+import { FetchLaunchParams } from "../../services/api/types";
+import { FETCH_LAUNCH } from "../constants";
 import { LaunchType, LaunchStatus, SortEnum, SortType } from "./type";
 
 interface LaunchSlickState {
@@ -18,27 +19,16 @@ const initialState: LaunchSlickState = {
   },
 };
 
-//NEED TO FIX ANY
 export const fetchLaunch: any = createAsyncThunk(
-  "launch/fetchLaunchStatus",
-  async ({ sortProperty }: any) => {
-    console.log("SLICE", sortProperty);
-
-    const options = {
-      page: 1,
-      limit: 4,
-      sort: { sortProperty: "asc" },
-    };
-
-    const { data } = await axios.post(
-      "https://api.spacexdata.com/v4/launches/query",
-      {
-        query: {},
-        options,
-      }
-    );
-
-    return data;
+  FETCH_LAUNCH,
+  async (params: FetchLaunchParams, { dispatch }) => {
+    const response = await getLauches(params);
+    if (params?.page > 1) {
+      dispatch(addLaunch(response));
+    } else {
+      dispatch(setLaunch(response));
+    }
+    return response;
   }
 );
 
@@ -47,7 +37,14 @@ export const launchSlice = createSlice({
   initialState,
   reducers: {
     setLaunch(state, action) {
-      state.items = [...state.items, ...action.payload];
+      state.items = action.payload;
+    },
+    addLaunch(state, action) {
+      const st = JSON.parse(JSON.stringify(state));
+      state.items = {
+        ...action.payload,
+        docs: [...st.items.docs, ...action.payload.docs],
+      };
     },
     setSort(state, action) {
       state.sort = action.payload;
@@ -56,19 +53,16 @@ export const launchSlice = createSlice({
   extraReducers: {
     [fetchLaunch.pending]: (state, action) => {
       state.status = "loading";
-      state.items = [];
     },
     [fetchLaunch.fulfilled]: (state, action) => {
-      state.items = action.payload;
       state.status = "success";
     },
     [fetchLaunch.rejected]: (state, action) => {
       state.status = "error";
-      state.items = [];
     },
   },
 });
 
-export const { setSort } = launchSlice.actions;
+export const { setSort, setLaunch, addLaunch } = launchSlice.actions;
 
 export default launchSlice.reducer;

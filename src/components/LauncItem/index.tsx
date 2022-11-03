@@ -1,15 +1,11 @@
 import { FC } from "react";
 import s from "./LauncItem.module.scss";
-
-type Props = {
-  item: any;
-  onTitleClick: any;
-};
+import { Props } from "./type";
 
 const LauncItem: FC<Props> = (props) => {
   const { onTitleClick } = props;
   const { item } = props;
-  const { links, date_utc, name, flight_number } = item || {};
+  const { links, date_utc, name, flight_number } = item;
 
   let time = date_utc.slice(0, 10);
 
@@ -24,7 +20,7 @@ const LauncItem: FC<Props> = (props) => {
         </div>
         <p className={s.time}>{time}</p>
         <p className={s.name} onClick={() => onTitleClick(flight_number)}>
-          {name}{" "}
+          {name}
         </p>
       </div>
     </>

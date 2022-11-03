@@ -1,8 +1,7 @@
 import { FC } from "react";
-import s from "./Modal.module.scss";
+import { ModalProps } from "./type";
 
-//ANY FIX
-const Modal: FC<any> = ({ active, setActive, children }) => {
+const Modal: FC<ModalProps> = ({ active, setActive, children }) => {
   return (
     <div
       className={active ? "modal active" : "modal"}
